@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -139,6 +138,14 @@ Route::post('/loc', [App\Http\Controllers\PageController::class, 'getloc'])->nam
 Route::get('/thanhcong', [App\Http\Controllers\ProductsController::class, 'getthanhcong'])->name('thanhcong');
 
 
+Route::get('/check-env', function () {
+    return [
+        'DB_HOST (env)' => env('DB_HOST'),
+        'DB_HOST (config)' => config('database.connections.mysql.host'),
+        'DB_DATABASE' => config('database.connections.mysql.database'),
+        'DB_USERNAME' => config('database.connections.mysql.username'),
+    ];
+});
 
 
 
