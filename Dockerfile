@@ -1,29 +1,26 @@
 FROM php:8.2-fpm
 
-# Install dependencies
+# Cài các extension
 RUN apt-get update && apt-get install -y \
     git curl zip unzip libpng-dev libonig-dev libxml2-dev \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-# Install Composer
+# Cài Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Set working directory
 WORKDIR /var/www
 
-# Copy source
+# Copy toàn bộ mã nguồn
 COPY . .
 
-# Ensure .env is copied
-COPY .env .env
-
-# Install PHP dependencies
+# Cài đặt Composer
 RUN composer install --no-dev --optimize-autoloader
 
-# Set permission
+# Phân quyền cho Laravel
 RUN chmod -R 775 storage bootstrap/cache
 
-# Clear cache and run migrate + server
+# Build và chạy
 CMD php artisan config:cache && \
     php artisan session:table && \
     php artisan migrate --force && \
