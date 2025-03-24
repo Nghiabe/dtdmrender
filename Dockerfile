@@ -1,6 +1,6 @@
 FROM php:8.2-fpm
 
-# Cài các extension cần thiết
+# Cài extension cần thiết
 RUN apt-get update && apt-get install -y \
     git curl zip unzip libpng-dev libonig-dev libxml2-dev \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
@@ -8,26 +8,17 @@ RUN apt-get update && apt-get install -y \
 # Cài Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set thư mục làm việc
+# Đặt thư mục làm việc
 WORKDIR /var/www
 
 # Copy toàn bộ mã nguồn vào container
 COPY . .
 
-# Cài thư viện PHP
+# Cài thư viện Laravel
 RUN composer install --no-dev --optimize-autoloader
 
-# Phân quyền cho Laravel
+# Set quyền cho storage và cache
 RUN chmod -R 775 storage bootstrap/cache
 
-# Thiết lập biến môi trường để PHP connect với MySQL (có thể override bằng Railway dashboard)
-ENV DB_CONNECTION=mysql
-ENV DB_HOST=mysql.railway.internal
-ENV DB_PORT=3306
-ENV DB_DATABASE=railway
-ENV DB_USERNAME=root
-ENV DB_PASSWORD=qMQnQzHihgLzogsKDpFAGKLxijPLoEzE
-
-
-# Chạy Laravel Server
-CMD php artisan serve --host=0.0.0.0 --port=3000
+# ✅ Lệnh CMD: chạy migrate trước khi khởi chạy server
+CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=3000
