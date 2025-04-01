@@ -194,7 +194,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  <!-- footer -->
 		  <div class="footer">
 			<div class="wthree-copyright">
-			  <p>© 2022 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">D&N Shop</a></p>
+			  <p>© 2022 Visitors. All rights reserved | Design by <a href="https://w3layouts.com">D&N Shop</a></p>
 			</div>
 		  </div>
   <!-- / footer -->
