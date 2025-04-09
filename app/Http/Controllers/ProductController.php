@@ -18,7 +18,7 @@ class ProductController extends Controller
    function add_product(){
 
         $cate_product = DB::table('category')->orderby('category_id','desc')->get();
-        return view('Admin.add_product')->with('cate_product', $cate_product);
+        return view('admin.add_product')->with('cate_product', $cate_product);
     }
      function save_product(Request $request){
 

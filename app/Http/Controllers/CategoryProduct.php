@@ -30,7 +30,7 @@ class CategoryProduct extends Controller
     }
     function add_category_product(){
 
-        return view('Admin.add_category_product');
+        return view('admin.add_category_product');
     }
     function all_category_product(){
 
