@@ -35,8 +35,8 @@ class CategoryProduct extends Controller
     function all_category_product(){
 
         $all_category_product = DB::table('category')->paginate(5);
-        $manage_category_product = view('admin.all_category_product')->with('all_category_product',$all_category_product);
-        return view('index_Admin')->with('admin.all_category_product',$manage_category_product);
+        $manage_category_product = view('Admin.all_category_product')->with('all_category_product',$all_category_product);
+        return view('index_Admin')->with('Admin.all_category_product',$manage_category_product);
     }
 
     function edit_category_product($category_product_id){
