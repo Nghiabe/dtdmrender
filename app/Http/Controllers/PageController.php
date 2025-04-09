@@ -147,7 +147,7 @@ class PageController extends Controller
         $namecategory = DB::table('category')->where('Category_ID',$sanpham->Category_ID)->first();
         $category = DB::table('category') ->get();
         $new = DB::table('products') -> where('hot','1')->orderby('id','desc') ->paginate(12);
-        return view('pages.product.chitietsanpham', compact('category','sanpham', 'new', 'namecategory'));
+        return view('pages.Product.chitietsanpham', compact('category','sanpham', 'new', 'namecategory'));
 
     }
 
@@ -190,7 +190,7 @@ public function getgiohang()
     $city = City::orderby('matp','ASC')->get();
     $province = Province::orderby('maqh','ASC')->get();
     $wards = Wards::orderby('xaid','ASC')->get();
-    return view('pages.product.giohang', compact('category', 'carts', 'city', 'province','wards' ));
+    return view('pages.Product.giohang', compact('category', 'carts', 'city', 'province','wards' ));
 }
 public function postgiohang(Request $Request)
 {
