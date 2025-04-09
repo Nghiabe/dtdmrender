@@ -3,7 +3,8 @@
 <title>Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript">
     addEventListener("load", function() {
         setTimeout(hideURLbar, 0);
@@ -12,33 +13,34 @@
 </script>
 
 <!-- bootstrap-css -->
-<link rel="stylesheet" href="{{ asset('backend/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('backend/css/bootstrap.min.css') }}">
 <!-- //bootstrap-css -->
 
 <!-- Custom CSS -->
-<link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
-<link rel="stylesheet" href="{{ asset('backend/css/style-responsive.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('backend/css/style.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('backend/css/style-responsive.css') }}">
 
 <!-- font CSS -->
 <link href="//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
 
 <!-- font-awesome icons -->
-<link rel="stylesheet" href="{{ asset('backend/css/font.css') }}">
-<link rel="stylesheet" href="{{ asset('backend/css/font-awesome.css') }}">
-<link rel="stylesheet" href="{{ asset('backend/css/morris.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('backend/css/font.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('backend/css/font-awesome.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('backend/css/morris.css') }}">
 <!-- calendar -->
-<link rel="stylesheet" href="{{ asset('backend/css/monthly.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('backend/css/monthly.css') }}">
 <!-- //calendar -->
+
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 <!-- //font-awesome icons -->
 
-<!-- Thêm Font Awesome CDN mới -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+<!-- Load JS files -->
+<script src="{{ secure_asset('backend/js/jquery2.0.3.min.js') }}"></script>
+<script src="{{ secure_asset('backend/js/raphael-min.js') }}"></script>
+<script src="{{ secure_asset('backend/js/morris.js') }}"></script>
+<script src="{{ secure_asset('Asset/js/onclick.js') }}"></script>
 
-<!-- script load js -->
-<script src="{{ asset('backend/js/jquery2.0.3.min.js') }}"></script>
-<script src="{{ asset('backend/js/raphael-min.js') }}"></script>
-<script src="{{ asset('backend/js/morris.js') }}"></script>
-<script src="{{ asset('Asset/js/onclick.js') }}"></script>
 </head>
 <body>
 <section id="container">
