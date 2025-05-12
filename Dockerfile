@@ -8,6 +8,10 @@ RUN apt-get update && apt-get install -y \
 # Cài đặt Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# Cài đặt Node.js và npm (nếu bạn cần sử dụng Node.js cho frontend)
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt-get install -y nodejs
+
 # Set working directory
 WORKDIR /var/www
 
@@ -17,11 +21,14 @@ COPY . .
 # Cài đặt các dependencies của Laravel
 RUN composer install --no-dev --optimize-autoloader
 
-# Phân quyền cho thư mục Laravel
-RUN chmod -R 775 storage bootstrap/cache
+# Cài đặt Node.js dependencies (nếu bạn sử dụng frontend assets)
+RUN npm install
 
-# Cấu hình và khởi động ứng dụng
+# Phân quyền cho thư mục Laravel
+RUN chown -R www-data:www-data storage bootstrap/cache
+
+# Cấu hình và khởi động ứng dụng (không dùng php artisan serve trong container)
 CMD php artisan config:cache && \
     php artisan session:table && \
     php artisan migrate --force && \
-    php artisan serve --host=0.0.0.0 --port=8000
+    nginx -g 'daemon off;'
