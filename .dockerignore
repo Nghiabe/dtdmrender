@@ -1,8 +1,5 @@
 node_modules
 .git
 .gitignore
-Dockerfile
-docker-compose.yml
-tests
-README.md
+vendor
 .env

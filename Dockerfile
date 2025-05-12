@@ -1,9 +1,12 @@
+# Sử dụng image PHP chính thức với FPM
 FROM php:8.2-fpm
 
-# Cài đặt các extension cần thiết
+# Cài đặt các dependencies cho PHP và cài đặt các extension cần thiết
 RUN apt-get update && apt-get install -y \
     git curl zip unzip libpng-dev libonig-dev libxml2-dev \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd \
+    && apt-get install -y nginx \
+    && apt-get clean
 
 # Cài đặt Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -27,8 +30,15 @@ RUN npm install
 # Phân quyền cho thư mục Laravel
 RUN chown -R www-data:www-data storage bootstrap/cache
 
-# Cấu hình và khởi động ứng dụng (không dùng php artisan serve trong container)
+# Cấu hình Nginx
+COPY ./nginx/default.conf /etc/nginx/sites-available/default
+
+# Expose port cho web
+EXPOSE 80
+
+# Cấu hình và khởi động ứng dụng
 CMD php artisan config:cache && \
     php artisan session:table && \
     php artisan migrate --force && \
-    nginx -g 'daemon off;'
+    service nginx start && \
+    php-fpm
