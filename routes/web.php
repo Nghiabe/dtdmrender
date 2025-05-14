@@ -123,9 +123,12 @@ Route::get('/view{id}', [App\Http\Controllers\PageController::class, 'getchitiet
 
 Route::get('/{id}', [App\Http\Controllers\PageController::class, 'getsanpham'])->name('sanpham');
 
-Route::get('/sanpham/addtocart/{id}', [App\Http\Controllers\PageController::class, 'getaddtocart'])->name('addtocart');
-Route::get('/sanpham/delete-cart', [App\Http\Controllers\PageController::class, 'getdeletecart'])->name('deletecart');
-Route::get('/sanpham/update-cart', [App\Http\Controllers\PageController::class, 'getdupdatecart'])->name('updatecart');
+// Đảm bảo dùng phương thức POST trong Route
+// Đảm bảo khai báo route cho cả GET và POSTdewdew
+// POST cho việc thêm sản phẩm vào giỏ hàng, không phải GET
+Route::post('/sanpham/addtocart/{id}', [PageController::class, 'getaddtocart'])->name('addtocart');
+Route::post('/sanpham/update-cart', [App\Http\Controllers\PageController::class, 'getdupdatecart'])->name('updatecart');
+Route::post('/sanpham/delete-cart', [App\Http\Controllers\PageController::class, 'getdeletecart'])->name('deletecart');
 
 Route::post('/tinhphi', [App\Http\Controllers\PageController::class, 'tinhphi'])->name('tinhphi');
 
